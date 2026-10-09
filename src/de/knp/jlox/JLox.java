@@ -9,8 +9,6 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public class JLox {
-	static boolean hadError = false;
-
 	public static void main(String[] args) throws IOException {
 		if (args.length > 1) {
 			System.err.println("Usage: java JLox [script]");
@@ -25,7 +23,7 @@ public class JLox {
 	private static void runFile(String path) throws IOException {
 		byte[] bytes = Files.readAllBytes(Paths.get(path));
 		run(new String(bytes, Charset.defaultCharset()));
-		if (hadError) { System.exit(65); }
+		if (Error.hadError) { System.exit(65); }
 	}
 
 	private static void runPrompt() throws IOException {
@@ -37,7 +35,7 @@ public class JLox {
 			String line = reader.readLine();
 			if (line == null) { break; }
 			run(line);
-			hadError = false;
+			Error.hadError = false;
 		}
 	}
 
@@ -48,14 +46,5 @@ public class JLox {
 		for (Token token : tokens) {
 			System.out.println(token);
 		}
-	}
-
-	static void error(int line, String message) {
-		report(line, "", message);
-	}
-
-	private static void report(int line, String where, String message) {
-		System.err.println("[line " + line + "] Error" + where + ": " + message);
-		hadError = true;
 	}
 }

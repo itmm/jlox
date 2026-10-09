@@ -13,7 +13,10 @@ clean:
 	rm -Rf obj/*
 
 obj/de/knp/jlox/Token.class: obj/de/knp/jlox/TokenType.class
-obj/de/knp/jlox/Scanner.class: obj/de/knp/jlox/TokenType.class
+obj/de/knp/jlox/Scanner.class: obj/de/knp/jlox/TokenType.class \
+	obj/de/knp/jlox/Token.class \
+	obj/de/knp/jlox/Error.class
 obj/de/knp/jlox/JLox.class: obj/de/knp/jlox/Scanner.class \
-	obj/de/knp/jlox/Token.class
+	obj/de/knp/jlox/Token.class \
+	obj/de/knp/jlox/Error.class
 

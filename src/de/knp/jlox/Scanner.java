@@ -52,7 +52,7 @@ class Scanner {
 			case ' ': case '\r': case '\t': break;
 			case '\n': line++; break;
 			case '"': string(); break;
-			default: JLox.error(line, "Unexpected character."); break;
+			default: Error.error(line, "Unexpected character."); break;
 		}
 	}
 
@@ -62,7 +62,7 @@ class Scanner {
 			advance();
 		}
 		if (isAtEnd()) {
-			JLox.error(line, "Unterminated string.");
+			Error.error(line, "Unterminated string.");
 			return;
 		}
 
